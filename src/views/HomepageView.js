@@ -1,11 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const HomepageView = () => {
-  return (
-    <div>
-      <h1>Test</h1>
-    </div>
-  );
+  return <div className="homepage">TEST</div>;
 };
 
 export default HomepageView;
