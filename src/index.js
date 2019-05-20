@@ -14,12 +14,15 @@ import "./styles/index.css";
 // store
 import { rootReducer } from "./reducers";
 
+// Middleware imports ---
+import { setToken } from "./token";
+
 // Redux google chrome addon ---
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   rootReducer,
-  composeEnhancers(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk, setToken))
 );
 
 ReactDOM.render(

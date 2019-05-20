@@ -1,13 +1,32 @@
 import React from "react";
+import { connect } from "react-redux";
+
+import { signup } from "../actions";
+
 import "../styles/Form.css";
 
-class LoginView extends React.Component {
+class SignupView extends React.Component {
   state = {
-    input: ""
+    credentials: {
+      firstName: "",
+      lastName: "",
+      username: "",
+      password: ""
+    }
+  };
+
+  handleChanges = e => {
+    this.setState({
+      credentials: {
+        ...this.state.credentials,
+        [e.target.name]: e.target.value
+      }
+    });
   };
 
   handleSubmit = e => {
-    console.log(e);
+    e.preventDefault();
+    this.props.signup(this.state.credentials);
   };
 
   render() {
@@ -15,27 +34,60 @@ class LoginView extends React.Component {
       <form onSubmit={this.handleSubmit} className="login-form col s12">
         <h3>Sign Up:</h3>
         <div className="input-field col s6">
-          <input id="first-name" type="text" />
-          <label for="first-name">First Name</label>
+          <input
+            id="first-name"
+            name="firstName"
+            type="text"
+            value={this.state.credentials.firstName}
+            onChange={this.handleChanges}
+          />
+          <label htmlFor="first-name">First Name</label>
         </div>
         <div className="input-field col s6">
-          <input id="last-name" type="text" />
-          <label for="last-name">Last Name</label>
+          <input
+            id="last-name"
+            name="lastName"
+            type="text"
+            value={this.state.credentials.lastName}
+            onChange={this.handleChanges}
+          />
+          <label htmlFor="last-name">Last Name</label>
         </div>
         <div className="input-field">
-          <input id="username" type="text" />
-          <label for="username">Username</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            value={this.state.credentials.username}
+            onChange={this.handleChanges}
+          />
+          <label htmlFor="username">Username</label>
         </div>
         <div className="input-field">
-          <input id="password" type="password" />
-          <label for="password">Password</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={this.state.credentials.password}
+            onChange={this.handleChanges}
+          />
+          <label htmlFor="password">Password</label>
         </div>
         <button className="btn" type="submit">
-          Log In
+          Sign Up
         </button>
       </form>
     );
   }
 }
 
-export default LoginView;
+const mapStateToProps = state => {
+  return {
+    signingUp: state.signingUp
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { signup }
+)(SignupView);
