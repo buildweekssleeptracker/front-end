@@ -4,3 +4,10 @@
   align-items: center;
   padding: 1rem;
 }
+
+.nav-wrapper ul {
+  font-family: "Baloo Bhaijaan", cursive;
+}
+.nav-wrapper ul li a {
+  padding: 1rem;
+}

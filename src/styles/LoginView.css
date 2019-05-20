@@ -1,0 +1,10 @@
+.login-form {
+  max-width: 30%;
+  margin: 60px auto;
+  padding: 1rem;
+}
+
+.login-form h3 {
+  font-size: 1.3rem;
+  text-align: center;
+}
