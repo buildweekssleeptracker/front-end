@@ -6,6 +6,9 @@ import HomepageView from "./views/HomepageView";
 import LoginView from "./views/LoginView";
 import SignupView from "./views/SignupView";
 import PrivateRoute from "./PrivateRoute";
+import Footer from "./components/Footer";
+
+import "./styles/App.css";
 
 function App() {
   return (
