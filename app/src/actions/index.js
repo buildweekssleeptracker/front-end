@@ -12,6 +12,8 @@ export const SIGNING_UP = "SIGNING_UP";
 export const SIGN_UP_SUCCESSFUL = "SIGN_UP_SUCCESSFUL";
 export const SIGN_UP_FAILED = "SIGN_UP_FAILED";
 
+export const LOG_OUT = "LOG_OUT";
+
 // ----------------------------------------
 
 // Action Creators ---
@@ -44,4 +46,12 @@ export const signup = creds => dispatch => {
       dispatch({ type: SIGN_UP_FAILED });
     });
 
+};
+
+export const logOut = () => {
+  localStorage.removeItem("userToken");
+
+  return {
+    type: LOG_OUT
+  };
 };

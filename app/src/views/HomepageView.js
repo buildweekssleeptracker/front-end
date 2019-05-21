@@ -20,7 +20,11 @@ const HomepageView = () => {
             <i className="material-icons right">more_vert</i>
           </span>
           <p>
-            <Link to="/login">Log In!</Link>
+            <Link
+              to={localStorage.getItem("userToken") ? "/dashboard" : "/login"}
+            >
+              Log In!
+            </Link>
           </p>
         </div>
         <div className="card-reveal">
@@ -48,7 +52,11 @@ const HomepageView = () => {
             <i className="material-icons right">more_vert</i>
           </span>
           <p>
-            <Link to="/signup">Sign Up!</Link>
+            <Link
+              to={localStorage.getItem("userToken") ? "/dashboard" : "/signup"}
+            >
+              Sign Up!
+            </Link>
           </p>
         </div>
         <div className="card-reveal">

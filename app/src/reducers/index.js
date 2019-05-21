@@ -5,14 +5,16 @@ import {
   LOGIN_SUCCESSFUL,
   SIGNING_UP,
   SIGN_UP_FAILED,
-  SIGN_UP_SUCCESSFUL
+  SIGN_UP_SUCCESSFUL,
+  LOG_OUT
 } from "../actions";
 
 const initialState = {
   loggingIn: false,
   loggedIn: false,
   signingUp: false,
-  error: null
+  error: null,
+  user: null
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -30,7 +32,8 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         loggedIn: false,
         loggingIn: false,
-        error: action.payload
+        error: action.payload,
+        user: null
       };
 
     case LOGIN_SUCCESSFUL:
@@ -38,14 +41,16 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         loggingIn: false,
         loggedIn: true,
-        error: null
+        error: null,
+        user: action.payload
       };
 
     case SIGNING_UP:
       return {
         ...state,
         signingUp: true,
-        error: null
+        error: null,
+        user: null
       };
 
     case SIGN_UP_SUCCESSFUL:
@@ -53,7 +58,8 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         signingUp: false,
         loggedIn: true,
-        error: null
+        error: null,
+        user: action.payload
       };
 
     case SIGN_UP_FAILED:
@@ -61,7 +67,18 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         signingUp: false,
         loggedIn: false,
-        error: action.payload
+        error: action.payload,
+        user: null
+      };
+
+    case LOG_OUT:
+      return {
+        ...state,
+        loggingIn: false,
+        loggedIn: false,
+        signingUp: false,
+        error: null,
+        user: null
       };
     default:
       return state;
