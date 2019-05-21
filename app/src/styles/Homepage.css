@@ -1,0 +1,29 @@
+body {
+  background: #cccccc;
+}
+
+.card {
+  max-width: 20%;
+}
+
+.cards-container {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 100px;
+}
+
+.card-title {
+  font-family: "Baloo Bhaijaan", cursive;
+}
+
+.card-content a {
+  font-family: "Roboto", sans-serif;
+}
+
+.card-reveal .card-title {
+  margin-bottom: 30px;
+}
+
+.card-reveal p {
+  font-family: "Roboto", sans-serif;
+}
