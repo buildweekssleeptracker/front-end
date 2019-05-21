@@ -1,0 +1,12 @@
+.title {
+  font-size: 2rem;
+  font-family: "Baloo Bhaijaan", cursive;
+  text-align: center;
+  /* border: 1px solid red; */
+  margin: 20px auto;
+}
+
+.subtitle {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
