@@ -1,28 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import { logOut } from "../actions";
 import "../styles/Navigation.css";
+
+import { logo } from "../assets/logo.png";
 
 const Navigation = props => {
   const logOut = () => {
-    localStorage.removeItem("userToken");
-    props.history.push("/");
+    props.logOut();
   };
 
   return (
     <nav>
       <div className="nav-wrapper deep-purple darken-4">
         <Link to="/" className="logo">
-          Logo
+          zZz
         </Link>
         <ul className="right hide-on-med-and-down ">
-          {localStorage.getItem("userToken") ? (
+          {props.loggedIn ? (
             <React.Fragment>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
               </li>
               <li>
-                <Link onClick={logOut}>Log Out</Link>
+                <Link to="/" onClick={logOut}>
+                  Log Out
+                </Link>
               </li>
             </React.Fragment>
           ) : (
@@ -49,5 +53,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  {}
+  { logOut }
 )(Navigation);
