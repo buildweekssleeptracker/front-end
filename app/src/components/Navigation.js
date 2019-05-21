@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import "../styles/Navigation.css";
 
@@ -9,6 +10,7 @@ const Navigation = props => {
     props.history.push("/");
   };
 
+
   return (
     <nav>
       <div className="nav-wrapper deep-purple darken-4">
@@ -16,6 +18,7 @@ const Navigation = props => {
           Logo
         </Link>
         <ul className="right hide-on-med-and-down ">
+
           {localStorage.getItem("userToken") ? (
             <React.Fragment>
               <li>
@@ -35,11 +38,13 @@ const Navigation = props => {
               </li>
             </React.Fragment>
           )}
+
         </ul>
       </div>
     </nav>
   );
 };
+
 
 const mapStateToProps = state => {
   return {
@@ -51,3 +56,4 @@ export default connect(
   mapStateToProps,
   {}
 )(Navigation);
+

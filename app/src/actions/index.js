@@ -1,5 +1,7 @@
 import axios from "axios";
+
 // import { axiosWithAuth } from "../axiosWithAuth";
+
 
 // Action Types ---
 export const LOGGING_IN = "LOGGING_IN";
@@ -15,6 +17,7 @@ export const SIGN_UP_FAILED = "SIGN_UP_FAILED";
 // Action Creators ---
 export const login = creds => dispatch => {
   dispatch({ type: LOGGING_IN });
+
   return axios
     .post("https://lambda-sleeptracker.herokuapp.com/api/login", creds)
     .then(res => {
@@ -24,10 +27,12 @@ export const login = creds => dispatch => {
     .catch(err => {
       console.log(err.response);
     });
+
 };
 
 export const signup = creds => dispatch => {
   dispatch({ type: SIGNING_UP });
+
   return axios
     .post("https://lambda-sleeptracker.herokuapp.com/api/register", creds)
     .then(res => {
@@ -38,4 +43,5 @@ export const signup = creds => dispatch => {
       console.log(err);
       dispatch({ type: SIGN_UP_FAILED });
     });
+
 };
