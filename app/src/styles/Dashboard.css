@@ -11,7 +11,17 @@
   font-family: "Roboto", sans-serif;
 }
 
-.row a.btn {
+.row .btn {
   font-family: "Roboto", sans-serif;
-  margin: 0 auto;
+  margin: 0 20px;
+}
+
+.row-buttons {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+}
+
+.row-buttons button {
+  width: 400px;
 }

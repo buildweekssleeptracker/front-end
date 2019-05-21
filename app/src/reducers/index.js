@@ -6,7 +6,9 @@ import {
   SIGNING_UP,
   SIGN_UP_FAILED,
   SIGN_UP_SUCCESSFUL,
-  LOG_OUT
+  LOG_OUT,
+  GOING_TO_SLEEP,
+  WAKING_UP
 } from "../actions";
 
 const initialState = {
@@ -14,7 +16,9 @@ const initialState = {
   loggedIn: false,
   signingUp: false,
   error: null,
-  user: null
+  user: null,
+  sleepTime: null,
+  wakeTime: null
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -80,6 +84,20 @@ export const rootReducer = (state = initialState, action) => {
         error: null,
         user: null
       };
+
+    case GOING_TO_SLEEP:
+      return {
+        ...state,
+        sleepTime: action.payload
+      };
+
+    case WAKING_UP:
+      return {
+        ...state,
+        sleepTime: null,
+        wakeTime: action.payload
+      };
+
     default:
       return state;
   }

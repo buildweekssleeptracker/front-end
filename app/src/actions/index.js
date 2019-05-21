@@ -2,7 +2,6 @@ import axios from "axios";
 
 // import { axiosWithAuth } from "../axiosWithAuth";
 
-
 // Action Types ---
 export const LOGGING_IN = "LOGGING_IN";
 export const LOGIN_SUCCESSFUL = "LOGIN_SUCCESSFUL";
@@ -13,6 +12,9 @@ export const SIGN_UP_SUCCESSFUL = "SIGN_UP_SUCCESSFUL";
 export const SIGN_UP_FAILED = "SIGN_UP_FAILED";
 
 export const LOG_OUT = "LOG_OUT";
+
+export const GOING_TO_SLEEP = "GOING_TO_SLEEP";
+export const WAKING_UP = "WAKING_UP";
 
 // ----------------------------------------
 
@@ -29,7 +31,6 @@ export const login = creds => dispatch => {
     .catch(err => {
       console.log(err.response);
     });
-
 };
 
 export const signup = creds => dispatch => {
@@ -45,7 +46,6 @@ export const signup = creds => dispatch => {
       console.log(err);
       dispatch({ type: SIGN_UP_FAILED });
     });
-
 };
 
 export const logOut = () => {
@@ -53,5 +53,23 @@ export const logOut = () => {
 
   return {
     type: LOG_OUT
+  };
+};
+
+export const sleep = () => {
+  const sleepTime = new Date();
+  console.log(sleepTime);
+  return {
+    type: GOING_TO_SLEEP,
+    payload: sleepTime
+  };
+};
+
+export const wake = () => {
+  const wakeTime = new Date();
+  console.log(wakeTime);
+  return {
+    type: WAKING_UP,
+    payload: wakeTime
   };
 };

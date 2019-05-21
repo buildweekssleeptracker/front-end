@@ -1,28 +1,35 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { sleep } from "../actions";
 
 import "../styles/Dashboard.css";
 
 class Dashboard extends React.Component {
+  state = {
+    userIn: this.props.user
+  };
   render() {
     return (
       <div className="container">
         <div className="row">
           <div className="col s12 title">
-            {this.props.user.username}'s sleep data
+            {this.state.userIn.username}'s sleep data
           </div>
           <div className="col s6 subtitle">Testing Materialize</div>
           <div className="col s6 subtitle">Testing Materialize</div>
         </div>
 
-        <div className="row">
-          <Link
-            to="/"
-            className="waves-effect waves-light btn col s8 offset-s2"
+        <div className="row-buttons">
+          <button
+            className="waves-effect waves-light btn col s4"
+            onClick={this.props.sleep}
           >
-            New Sleep Session <i className="material-icons right">cloud</i>
-          </Link>
+            Going To Sleep <i className="material-icons right">cloud</i>
+          </button>
+
+          <button className="waves-effect waves-light btn col s4">
+            Waking Up <i className="material-icons left">cloud</i>
+          </button>
         </div>
       </div>
     );
@@ -31,10 +38,11 @@ class Dashboard extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    user: state.user
+    user: state.user,
+    sleepTime: state.sleepTime
   };
 };
 export default connect(
   mapStateToProps,
-  {}
+  { sleep }
 )(Dashboard);
