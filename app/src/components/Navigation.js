@@ -16,7 +16,7 @@ const Navigation = props => {
           Logo
         </Link>
         <ul className="right hide-on-med-and-down ">
-          {props.loggedIn ? (
+          {localStorage.getItem("userToken") ? (
             <React.Fragment>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
