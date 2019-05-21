@@ -26,7 +26,9 @@ class SignupView extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.signup(this.state.credentials);
+    this.props.signup(this.state.credentials).then(() => {
+      this.props.history.push("/dashboard");
+    });
   };
 
   render() {
