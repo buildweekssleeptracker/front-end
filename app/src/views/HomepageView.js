@@ -4,14 +4,13 @@ import { Link } from "react-router-dom";
 import "../styles/Homepage.css";
 import sleepingMan from "../assets/sleeping_man_pic.jpg";
 import restlessMan from "../assets/restless_man.jpg";
-import LoginView from "./LoginView";
 
 const HomepageView = () => {
   return (
     <div className="cards-container">
       <div className="card large sticky-action ">
         <div className="card-image waves-effect waves-block waves-light">
-          <img className="activator" src={sleepingMan} />
+          <img className="activator" src={sleepingMan} alt="Man enjoying his sleep"/>
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-4">
@@ -43,7 +42,7 @@ const HomepageView = () => {
 
       <div className="card large sticky-action ">
         <div className="card-image waves-effect waves-block waves-light">
-          <img className="activator" src={restlessMan} />
+          <img className="activator" src={restlessMan} alt="Man going crazy because he doesn't sleep"/>
         </div>
         <div className="card-content">
           <span className="card-title activator grey-text text-darken-3">

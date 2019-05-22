@@ -98,13 +98,6 @@ export const rootReducer = (state = initialState, action) => {
         sleepData: [...state.sleepData, action.payload]
       };
 
-    case WAKING_UP:
-      return {
-        ...state,
-        sleepTime: null,
-        wakeTime: action.payload
-      };
-
     case FETCHING_SLEEP_DATA_START:
       return {
         ...state,
