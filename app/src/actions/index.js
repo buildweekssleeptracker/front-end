@@ -108,7 +108,7 @@ export const deleteSleepTime = id => dispatch => {
 };
 
 export const wakingUp = id => dispatch => {
-  const wakeTimeDate = new Date("5/23/2019, 10:00:00 AM");
+  const wakeTimeDate = new Date();
   const wakeTime = wakeTimeDate.toLocaleString();
   axiosWithAuth()
     .put(`https://lambda-sleeptracker.herokuapp.com/api/sleeps/${id}`, {
