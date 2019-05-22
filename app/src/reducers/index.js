@@ -8,7 +8,11 @@ import {
   SIGN_UP_SUCCESSFUL,
   LOG_OUT,
   GOING_TO_SLEEP,
-  WAKING_UP
+  WAKING_UP,
+  FETCHING_SLEEP_DATA_START,
+  FETCHING_SLEEP_DATA_FAILED,
+  FETCHING_SLEEP_DATA_SUCCESS,
+  DELETE_SLEEP_TIME
 } from "../actions";
 
 const initialState = {
@@ -18,7 +22,9 @@ const initialState = {
   error: null,
   user: null,
   sleepTime: null,
-  wakeTime: null
+  wakeTime: null,
+  fetchingSleepData: false,
+  sleepData: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -86,16 +92,53 @@ export const rootReducer = (state = initialState, action) => {
       };
 
     case GOING_TO_SLEEP:
+      // console.log(action.payload);
       return {
         ...state,
-        sleepTime: action.payload
+        sleepData: [...state.sleepData, action.payload]
+      };
+
+    case FETCHING_SLEEP_DATA_START:
+      return {
+        ...state,
+        fetchingSleepData: true,
+        error: null
+      };
+
+    case FETCHING_SLEEP_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingSleepData: false,
+        error: null,
+        sleepData: action.payload
+      };
+
+    case FETCHING_SLEEP_DATA_FAILED:
+      return {
+        ...state,
+        fetchingSleepData: false,
+        error: action.payload
+      };
+
+    case DELETE_SLEEP_TIME:
+      console.log(action.payload);
+      return {
+        ...state,
+        sleepData: [
+          // ...state.sleepData.slice(0, 41)
+          ...state.sleepData.filter(sleep => sleep.id !== action.payload)
+        ]
       };
 
     case WAKING_UP:
+      console.log(action.payload);
       return {
         ...state,
-        sleepTime: null,
-        wakeTime: action.payload
+        sleepData: [
+          ...state.sleepData.map(sleep => {
+            return sleep.id === action.id ? action.payload : sleep;
+          })
+        ]
       };
 
     default:
