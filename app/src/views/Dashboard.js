@@ -87,16 +87,16 @@ class Dashboard extends React.Component {
                 </span>
                 <div className="emoji-div">
                   <div className="emoji sad">
-                    <img src={sad} />
+                    <img src={sad} alt="Sad emoji" />
                   </div>
                   <div className="emoji meh">
-                    <img src={meh} />
+                    <img src={meh} alt="Meh emoji" />
                   </div>
                   <div className="emoji happy">
-                    <img src={happy} />
+                    <img src={happy} alt="Happy emoji" />
                   </div>
                   <div className="emoji excited">
-                    <img src={excited} />
+                    <img src={excited} alt="Excited emoji" />
                   </div>
                 </div>
               </div>
