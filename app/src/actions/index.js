@@ -84,15 +84,6 @@ export const sleep = () => dispatch => {
     });
 };
 
-export const wake = () => {
-  const wakeTime = new Date();
-  console.log(wakeTime);
-  return {
-    type: WAKING_UP,
-    payload: wakeTime
-  };
-};
-
 export const fetchSleepData = () => dispatch => {
   dispatch({ type: FETCHING_SLEEP_DATA_START });
   axiosWithAuth()
@@ -112,6 +103,20 @@ export const deleteSleepTime = id => dispatch => {
     .then(res => {
       // console.log(res);
       dispatch({ type: DELETE_SLEEP_TIME, payload: id });
+    })
+    .catch(err => console.log(err.response));
+};
+
+export const wakingUp = id => dispatch => {
+  const wakeTimeDate = new Date("5/23/2019, 10:00:00 AM");
+  const wakeTime = wakeTimeDate.toLocaleString();
+  axiosWithAuth()
+    .put(`https://lambda-sleeptracker.herokuapp.com/api/sleeps/${id}`, {
+      timeWakeUp: wakeTime
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({ type: WAKING_UP, payload: res.data, id });
     })
     .catch(err => console.log(err.response));
 };

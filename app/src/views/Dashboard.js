@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sleep, fetchSleepData, deleteSleepTime } from "../actions";
+import { sleep, fetchSleepData, deleteSleepTime, wakingUp } from "../actions";
 
 import "../styles/Dashboard.css";
 
@@ -26,8 +26,12 @@ class Dashboard extends React.Component {
   }
 
   deleteTime = id => {
-    console.log(id);
+    // console.log(id);
     this.props.deleteSleepTime(id);
+  };
+
+  wakeUp = id => {
+    this.props.wakingUp(id);
   };
 
   render() {
@@ -42,7 +46,8 @@ class Dashboard extends React.Component {
           <div className="col s6 subtitle">
             {this.props.sleepData.map(sleep => [
               <span key={Math.random()}>{sleep.timeInBed}</span>,
-              <button onClick={() => this.deleteTime(sleep.id)}>X</button>
+              <button onClick={() => this.deleteTime(sleep.id)}>X</button>,
+              <button onClick={() => this.wakeUp(sleep.id)}>Wake Up</button>
             ])}
           </div>
           <div className="col s6 subtitle">Testing Materialize</div>
@@ -56,9 +61,12 @@ class Dashboard extends React.Component {
             Going To Sleep <i className="material-icons right">cloud</i>
           </button>
 
-          <button className="waves-effect waves-light btn col s4">
+          {/* <button
+            className="waves-effect waves-light btn col s4"
+            onClick={() => this.wakeUp()}
+          >
             Waking Up <i className="material-icons left">cloud</i>
-          </button>
+          </button> */}
         </div>
       </div>
     );
@@ -74,5 +82,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { sleep, fetchSleepData, deleteSleepTime }
+  { sleep, fetchSleepData, deleteSleepTime, wakingUp }
 )(Dashboard);

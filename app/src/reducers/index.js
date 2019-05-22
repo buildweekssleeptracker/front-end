@@ -120,15 +120,34 @@ export const rootReducer = (state = initialState, action) => {
         sleepData: action.payload
       };
 
+    case FETCHING_SLEEP_DATA_FAILED:
+      return {
+        ...state,
+        fetchingSleepData: false,
+        error: action.payload
+      };
+
     case DELETE_SLEEP_TIME:
       console.log(action.payload);
       return {
         ...state,
         sleepData: [
           // ...state.sleepData.slice(0, 41)
-          ...state.sleepData.filter(sleep => sleep.id != action.payload)
+          ...state.sleepData.filter(sleep => sleep.id !== action.payload)
         ]
       };
+
+    case WAKING_UP:
+      console.log(action.payload);
+      return {
+        ...state,
+        sleepData: [
+          ...state.sleepData.map(sleep => {
+            return sleep.id === action.id ? action.payload : sleep;
+          })
+        ]
+      };
+
     default:
       return state;
   }
