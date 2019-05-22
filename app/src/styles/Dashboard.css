@@ -1,6 +1,17 @@
-.title {
-  font-size: 2rem;
+/* 
   font-family: "Baloo Bhaijaan", cursive;
+  font-family: "Roboto", sans-serif; */
+
+.user-message {
+  text-align: center;
+  font-family: "Baloo Bhaijaan", cursive;
+  font-size: 2rem;
+  margin-top: 30px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
   text-align: center;
   /* border: 1px solid red; */
   margin: 20px auto;
@@ -11,17 +22,103 @@
   font-family: "Roboto", sans-serif;
 }
 
-.row .btn {
-  font-family: "Roboto", sans-serif;
-  margin: 0 20px;
+div .btn {
+  margin: 60px auto;
+  display: flex;
+  width: 500px;
+  height: 60px;
+
+  justify-content: center;
+  align-items: center;
 }
 
-.row-buttons {
+div .btn span {
+  text-align: center;
+  font-size: 2rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.sleep-data-map {
+  /* border: 1px solid blue; */
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.sleep-card {
+  /* border: 1px solid red; */
+  padding: 1rem;
+  margin-top: 15px;
+  border-radius: 10px;
+  background: #b3c2f2;
+  min-height: 200px;
+  min-width: 49%;
+}
+
+.sleep-card h3 {
+  font-family: "Baloo Bhaijaan", cursive;
+  font-size: 1.1rem;
+}
+
+.sleep-card .times {
   /* border: 1px solid red; */
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  padding: 0.5rem 0;
+  font-family: "Roboto", sans-serif;
 }
 
-.row-buttons button {
-  width: 400px;
+.sleep-card .sleep-time {
+  margin-bottom: 5px;
+}
+
+.sleep-card .emoji-title {
+  text-align: center;
+  /* border: 1px solid red; */
+  margin-top: 10px;
+  display: block;
+  padding: 0.3rem;
+  font-family: "Baloo Bhaijaan", cursive;
+  font-size: 1.1rem;
+}
+
+.sleep-card .button-div {
+  /* border: 1px solid brown; */
+  display: flex;
+  max-width: 550px;
+  justify-content: flex-start;
+}
+
+.button-div div {
+  max-width: 30%;
+}
+
+.button-type {
+  background: #230c33;
+  color: white;
+  border-radius: 5px;
+  padding: 0.3rem;
+  border-style: none;
+  min-width: 100px;
+  margin-right: 10px;
+}
+
+.button-type:hover {
+  cursor: pointer;
+}
+
+.emoji-div {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+.emoji img {
+  width: 60px;
+  height: 60px;
+  /* border: 5px solid red; */
+}
+
+.emoji img:hover {
+  cursor: pointer;
 }

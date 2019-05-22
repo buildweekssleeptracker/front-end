@@ -5,8 +5,6 @@ import { connect } from "react-redux";
 import { logOut } from "../actions";
 import "../styles/Navigation.css";
 
-import { logo } from "../assets/logo.png";
-
 const Navigation = props => {
   const logOut = () => {
     props.logOut();
