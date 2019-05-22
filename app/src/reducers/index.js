@@ -11,7 +11,8 @@ import {
   WAKING_UP,
   FETCHING_SLEEP_DATA_START,
   FETCHING_SLEEP_DATA_FAILED,
-  FETCHING_SLEEP_DATA_SUCCESS
+  FETCHING_SLEEP_DATA_SUCCESS,
+  DELETE_SLEEP_TIME
 } from "../actions";
 
 const initialState = {
@@ -91,9 +92,10 @@ export const rootReducer = (state = initialState, action) => {
       };
 
     case GOING_TO_SLEEP:
+      // console.log(action.payload);
       return {
         ...state,
-        sleepTime: action.payload
+        sleepData: [...state.sleepData, action.payload]
       };
 
     case WAKING_UP:
@@ -118,6 +120,15 @@ export const rootReducer = (state = initialState, action) => {
         sleepData: action.payload
       };
 
+    case DELETE_SLEEP_TIME:
+      console.log(action.payload);
+      return {
+        ...state,
+        sleepData: [
+          // ...state.sleepData.slice(0, 41)
+          ...state.sleepData.filter(sleep => sleep.id != action.payload)
+        ]
+      };
     default:
       return state;
   }

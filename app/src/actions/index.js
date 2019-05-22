@@ -20,6 +20,8 @@ export const FETCHING_SLEEP_DATA_START = "FETCHING_SLEEP_DATA_START";
 export const FETCHING_SLEEP_DATA_SUCCESS = "FETCHING_SLEEP_DATA_SUCCESS";
 export const FETCHING_SLEEP_DATA_FAILED = "FETCHING_SLEEP_DATA_FAILED";
 
+export const DELETE_SLEEP_TIME = "DELETE_SLEEP_TIME";
+
 // ----------------------------------------
 
 // Action Creators ---
@@ -73,10 +75,12 @@ export const sleep = () => dispatch => {
     })
     .then(res => {
       console.log(res);
-      dispatch({ type: GOING_TO_SLEEP, payload: res.data.payload });
+      dispatch({ type: GOING_TO_SLEEP, payload: res.data });
+      return true;
     })
     .catch(err => {
       console.log(err);
+      return false;
     });
 };
 
@@ -100,4 +104,14 @@ export const fetchSleepData = () => dispatch => {
     .catch(err => {
       console.log(err.response);
     });
+};
+
+export const deleteSleepTime = id => dispatch => {
+  axiosWithAuth()
+    .delete(`https://lambda-sleeptracker.herokuapp.com/api/sleeps/${id}`)
+    .then(res => {
+      // console.log(res);
+      dispatch({ type: DELETE_SLEEP_TIME, payload: id });
+    })
+    .catch(err => console.log(err.response));
 };
