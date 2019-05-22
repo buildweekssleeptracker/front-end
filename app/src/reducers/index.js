@@ -8,7 +8,10 @@ import {
   SIGN_UP_SUCCESSFUL,
   LOG_OUT,
   GOING_TO_SLEEP,
-  WAKING_UP
+  WAKING_UP,
+  FETCHING_SLEEP_DATA_START,
+  FETCHING_SLEEP_DATA_FAILED,
+  FETCHING_SLEEP_DATA_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -18,7 +21,9 @@ const initialState = {
   error: null,
   user: null,
   sleepTime: null,
-  wakeTime: null
+  wakeTime: null,
+  fetchingSleepData: false,
+  sleepData: []
 };
 
 export const rootReducer = (state = initialState, action) => {
@@ -96,6 +101,21 @@ export const rootReducer = (state = initialState, action) => {
         ...state,
         sleepTime: null,
         wakeTime: action.payload
+      };
+
+    case FETCHING_SLEEP_DATA_START:
+      return {
+        ...state,
+        fetchingSleepData: true,
+        error: null
+      };
+
+    case FETCHING_SLEEP_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingSleepData: false,
+        error: null,
+        sleepData: action.payload
       };
 
     default:

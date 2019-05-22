@@ -1,21 +1,33 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sleep } from "../actions";
+import { sleep, fetchSleepData } from "../actions";
 
 import "../styles/Dashboard.css";
 
 class Dashboard extends React.Component {
   state = {
-    userIn: this.props.user
+    user: JSON.parse(localStorage.getItem("User"))
   };
+
+  componentDidMount() {
+    this.props.fetchSleepData();
+    console.log(this.props.sleepData);
+  }
+
   render() {
+    console.log(this.state.user);
     return (
       <div className="container">
+        <h1 className="user-message">{this.state.user.message}</h1>
         <div className="row">
           <div className="col s12 title">
-            {this.state.userIn.username}'s sleep data
+            {this.state.user.username}'s sleep data
           </div>
-          <div className="col s6 subtitle">Testing Materialize</div>
+          <div className="col s6 subtitle">
+            {this.props.sleepData.map(sleep => (
+              <h1 key={sleep.id}>{sleep.timeInBed}</h1>
+            ))}
+          </div>
           <div className="col s6 subtitle">Testing Materialize</div>
         </div>
 
@@ -39,10 +51,11 @@ class Dashboard extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    sleepTime: state.sleepTime
+    sleepTime: state.sleepTime,
+    sleepData: state.sleepData
   };
 };
 export default connect(
   mapStateToProps,
-  { sleep }
+  { sleep, fetchSleepData }
 )(Dashboard);
