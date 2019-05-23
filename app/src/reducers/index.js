@@ -12,7 +12,8 @@ import {
   FETCHING_SLEEP_DATA_START,
   FETCHING_SLEEP_DATA_FAILED,
   FETCHING_SLEEP_DATA_SUCCESS,
-  DELETE_SLEEP_TIME
+  DELETE_SLEEP_TIME,
+  SEND_EMOJI
 } from "../actions";
 
 const initialState = {
@@ -121,7 +122,7 @@ export const rootReducer = (state = initialState, action) => {
       };
 
     case DELETE_SLEEP_TIME:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         sleepData: [
@@ -131,7 +132,7 @@ export const rootReducer = (state = initialState, action) => {
       };
 
     case WAKING_UP:
-      console.log(action.payload);
+      // console.log(action.payload);
       return {
         ...state,
         sleepData: [
@@ -141,6 +142,10 @@ export const rootReducer = (state = initialState, action) => {
         ]
       };
 
+    case SEND_EMOJI:
+      return {
+        ...state
+      };
     default:
       return state;
   }
