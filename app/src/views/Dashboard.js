@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
   state = {
     user: JSON.parse(localStorage.getItem("User")),
     posting: false
+    // active: false -- Won't work until I refactor the sleep cards to be individual components holding their own state.
   };
 
   goingTosleep = () => {
@@ -37,10 +38,6 @@ class Dashboard extends React.Component {
     console.log(this.props.sleepData);
   }
 
-  componentWillUnmount() {
-    console.log("unmounted");
-  }
-
   deleteTime = id => {
     // console.log(id);
     this.props.deleteSleepTime(id);
@@ -52,21 +49,39 @@ class Dashboard extends React.Component {
 
   sendSad = id => {
     this.props.sendEmoji(id, 1);
+    // this.setState({
+    //   ...this.state,
+    //   active: 1
+    // });
   };
 
   sendMeh = id => {
     this.props.sendEmoji(id, 2);
+    // this.setState({
+    //   ...this.state,
+    //   active: 2
+    // });
   };
 
   sendHappy = id => {
     this.props.sendEmoji(id, 3);
+    // this.setState({
+    //   ...this.state,
+    //   active: 3
+    // });
   };
 
   sendExcited = id => {
     this.props.sendEmoji(id, 4);
+    // this.setState({
+    //   ...this.state,
+    //   active: 4
+    // });
   };
 
   render() {
+    // After build-week is graded, refactor sleep cards to be their own component. START THINKING MORE IN COMPONENTS!
+
     // console.log(this.state.user);
     return (
       <div className="container">
@@ -80,7 +95,7 @@ class Dashboard extends React.Component {
           <i className="material-icons right">cloud</i>
         </div>
 
-        <div className="title">{this.state.user.username}'s sleep data</div>
+        <div className="title">{this.state.user.username}'s sleeping sards</div>
         <div className="sleep-data-map">
           {this.props.sleepData.map(sleep => {
             return (
@@ -99,7 +114,7 @@ class Dashboard extends React.Component {
                     className="button-type"
                     onClick={() => this.deleteTime(sleep.id)}
                   >
-                    X
+                    Delete
                   </button>
                   <button
                     className="button-type"
@@ -108,39 +123,68 @@ class Dashboard extends React.Component {
                     Wake Up
                   </button>
                 </div>
-                <span className="emoji-title">
-                  How did tonight's sleep feel?
-                </span>
-                <div className="emoji-div">
-                  <div className="emoji sad">
-                    <img
-                      src={sad}
-                      alt="Sad emoji"
-                      onClick={() => this.sendSad(sleep.id)}
-                    />
-                  </div>
-                  <div className="emoji meh">
-                    <img
-                      src={meh}
-                      alt="Meh emoji"
-                      onClick={() => this.sendMeh(sleep.id)}
-                    />
-                  </div>
-                  <div className="emoji happy">
-                    <img
-                      src={happy}
-                      alt="Happy emoji"
-                      onClick={() => this.sendHappy(sleep.id)}
-                    />
-                  </div>
-                  <div className="emoji excited">
-                    <img
-                      src={excited}
-                      alt="Excited emoji"
-                      onClick={() => this.sendExcited(sleep.id)}
-                    />
-                  </div>
-                </div>
+
+                {sleep.timeWakeUp && (
+                  <React.Fragment>
+                    <span className="emoji-title">
+                      How did tonight's sleep feel?
+                    </span>
+                    <div className="emoji-div">
+                      <div
+                        className={
+                          this.state.active === 1
+                            ? "emoji sad active-emoji"
+                            : "emoji sad"
+                        }
+                      >
+                        <img
+                          src={sad}
+                          alt="Sad emoji"
+                          onClick={() => this.sendSad(sleep.id)}
+                        />
+                      </div>
+                      <div
+                        className={
+                          this.state.active === 2
+                            ? "emoji meh active-emoji"
+                            : "emoji meh"
+                        }
+                      >
+                        <img
+                          src={meh}
+                          alt="Meh emoji"
+                          onClick={() => this.sendMeh(sleep.id)}
+                        />
+                      </div>
+                      <div
+                        className={
+                          this.state.active === 3
+                            ? "emoji happy active-emoji"
+                            : "emoji happy"
+                        }
+                      >
+                        <img
+                          src={happy}
+                          alt="Happy emoji"
+                          onClick={() => this.sendHappy(sleep.id)}
+                        />
+                      </div>
+                      <div
+                        className={
+                          this.state.active === 4
+                            ? "emoji excited active-emoji"
+                            : "emoji excited"
+                        }
+                      >
+                        <img
+                          src={excited}
+                          alt="Excited emoji"
+                          onClick={() => this.sendExcited(sleep.id)}
+                        />
+                      </div>
+                    </div>
+                  </React.Fragment>
+                )}
               </div>
             );
           })}

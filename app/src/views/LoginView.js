@@ -28,7 +28,6 @@ class LoginView extends React.Component {
     this.props.login(this.state.credentials).then(() => {
       this.props.history.push("/dashboard");
     });
-
   };
 
   render() {
@@ -58,6 +57,14 @@ class LoginView extends React.Component {
         <button className="btn" type="submit">
           Log In
         </button>
+        {this.props.error ? (
+          <div>
+            <p>
+              {this.props.error.response.state}{" "}
+              {this.props.error.response.data.message}
+            </p>
+          </div>
+        ) : null}
       </form>
     );
   }
