@@ -22,6 +22,8 @@ export const FETCHING_SLEEP_DATA_FAILED = "FETCHING_SLEEP_DATA_FAILED";
 
 export const DELETE_SLEEP_TIME = "DELETE_SLEEP_TIME";
 
+export const SEND_EMOJI = "SEND_EMOJI";
+
 // ----------------------------------------
 
 // Action Creators ---
@@ -31,7 +33,7 @@ export const login = creds => dispatch => {
   return axios
     .post("https://lambda-sleeptracker.herokuapp.com/api/login", creds)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: LOGIN_SUCCESSFUL, payload: res.data });
       localStorage.setItem("User", JSON.stringify(res.data));
     })
@@ -89,7 +91,7 @@ export const fetchSleepData = () => dispatch => {
   axiosWithAuth()
     .get(`https://lambda-sleeptracker.herokuapp.com/api/sleeps/`)
     .then(res => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: FETCHING_SLEEP_DATA_SUCCESS, payload: res.data });
     })
     .catch(err => {
@@ -115,8 +117,22 @@ export const wakingUp = id => dispatch => {
       timeWakeUp: wakeTime
     })
     .then(res => {
-      console.log(res);
+      // console.log(res);
       dispatch({ type: WAKING_UP, payload: res.data, id });
     })
     .catch(err => console.log(err.response));
+};
+
+export const sendEmoji = (id, emoji) => dispatch => {
+  axiosWithAuth()
+    .put(`https://lambda-sleeptracker.herokuapp.com/api/sleeps/${id}`, {
+      moodAfterBed: emoji
+    })
+    .then(res => {
+      console.log(res);
+      dispatch({ type: SEND_EMOJI, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err.response);
+    });
 };

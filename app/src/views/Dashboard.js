@@ -1,6 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { sleep, fetchSleepData, deleteSleepTime, wakingUp } from "../actions";
+import {
+  sleep,
+  fetchSleepData,
+  deleteSleepTime,
+  wakingUp,
+  sendEmoji
+} from "../actions";
 
 // Emojis
 import sad from "../assets/emoji-sad-1.png";
@@ -31,6 +37,10 @@ class Dashboard extends React.Component {
     console.log(this.props.sleepData);
   }
 
+  componentWillUnmount() {
+    console.log("unmounted");
+  }
+
   deleteTime = id => {
     // console.log(id);
     this.props.deleteSleepTime(id);
@@ -38,6 +48,22 @@ class Dashboard extends React.Component {
 
   wakeUp = id => {
     this.props.wakingUp(id);
+  };
+
+  sendSad = id => {
+    this.props.sendEmoji(id, 1);
+  };
+
+  sendMeh = id => {
+    this.props.sendEmoji(id, 2);
+  };
+
+  sendHappy = id => {
+    this.props.sendEmoji(id, 3);
+  };
+
+  sendExcited = id => {
+    this.props.sendEmoji(id, 4);
   };
 
   render() {
@@ -87,16 +113,32 @@ class Dashboard extends React.Component {
                 </span>
                 <div className="emoji-div">
                   <div className="emoji sad">
-                    <img src={sad} />
+                    <img
+                      src={sad}
+                      alt="Sad emoji"
+                      onClick={() => this.sendSad(sleep.id)}
+                    />
                   </div>
                   <div className="emoji meh">
-                    <img src={meh} />
+                    <img
+                      src={meh}
+                      alt="Meh emoji"
+                      onClick={() => this.sendMeh(sleep.id)}
+                    />
                   </div>
                   <div className="emoji happy">
-                    <img src={happy} />
+                    <img
+                      src={happy}
+                      alt="Happy emoji"
+                      onClick={() => this.sendHappy(sleep.id)}
+                    />
                   </div>
                   <div className="emoji excited">
-                    <img src={excited} />
+                    <img
+                      src={excited}
+                      alt="Excited emoji"
+                      onClick={() => this.sendExcited(sleep.id)}
+                    />
                   </div>
                 </div>
               </div>
@@ -124,7 +166,7 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { sleep, fetchSleepData, deleteSleepTime, wakingUp }
+  { sleep, fetchSleepData, deleteSleepTime, wakingUp, sendEmoji }
 )(Dashboard);
 
 // {this.props.sleepData.map(sleep => [
