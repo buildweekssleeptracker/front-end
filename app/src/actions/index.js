@@ -59,8 +59,9 @@ export const signup = creds => dispatch => {
 };
 
 export const logOut = () => {
-  localStorage.removeItem("userToken");
-  localStorage.removeItem("User");
+  // localStorage.removeItem("userToken");
+  // localStorage.removeItem("User");
+  localStorage.clear();
 
   return {
     type: LOG_OUT

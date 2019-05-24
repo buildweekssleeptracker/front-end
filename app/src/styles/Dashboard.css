@@ -125,3 +125,7 @@ div .btn span {
   cursor: pointer;
   filter: saturate(100%);
 }
+
+.active-emoji img {
+  filter: saturate(100%);
+}

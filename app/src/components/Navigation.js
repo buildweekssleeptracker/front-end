@@ -17,7 +17,7 @@ const Navigation = props => {
           zZz
         </Link>
         <ul className="right hide-on-med-and-down ">
-          {props.loggedIn ? (
+          {localStorage.getItem("User") || props.loggedIn ? (
             <React.Fragment>
               <li>
                 <Link to="/dashboard">Dashboard</Link>
